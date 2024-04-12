@@ -32,35 +32,28 @@ class TestAdditionalFactorial(unittest.TestCase):
         self.assertEqual(factorial(3), 6)
         
     def test_factorial_of_large_number(self):
-        # Перевірка на велике число
         result = factorial(100)
         self.assertEqual(result, 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000)
 
     def test_float_input(self):
-        # Перевірка на введення десяткового числа
         with self.assertRaises(ValueError):
             factorial(5.5)
 
     def test_small_number(self):
-        # Перевірка на дуже мале число
         result = factorial(0)
         self.assertEqual(result, 1)
 
     def test_non_numeric_string_input(self):
-        # Перевірка на введення рядка без числового значення
         with self.assertRaises(ValueError):
             factorial("abc") 
             
     def test_numeric_string_input(self):
-    # Перевірка на введення числового рядка
          result = factorial(5)
          self.assertEqual(result, 120)
            
                                        
 if __name__ == "__main__":
     unittest.main()
-
-
 
 
 
