@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from factorial import factorial
 
 class TestAdditionalFactorial(unittest.TestCase):
@@ -29,8 +30,8 @@ class TestAdditionalFactorial(unittest.TestCase):
             factorial(-100)
             
     def test_factorial_of_three(self):
-        self.assertEqual(factorial(3), 6)  
-
+        self.assertEqual(factorial(3), 6)
+        
     def test_float_input(self):
         with self.assertRaises(ValueError):
             factorial(5.5)
@@ -43,13 +44,12 @@ class TestAdditionalFactorial(unittest.TestCase):
         with self.assertRaises(ValueError):
             factorial("abc") 
             
-    def test_numeric_string_input(self):
-         result = factorial(5)
-         self.assertEqual(result, 120)
-           
-                                       
+    @patch('builtins.input', return_value="5")
+    def test_input_as_numeric_string(self, mock_input):
+        result = factorial(int(mock_input()))
+        self.assertEqual(result, 120)
+        
 if __name__ == "__main__":
     unittest.main()
-
 
 
